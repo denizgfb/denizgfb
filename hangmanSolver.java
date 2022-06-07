@@ -3,7 +3,7 @@ import java.util.*;
 
 public class hangmanSolver {
 	public static void main(String[] args) {
-		// oyun giriþ ekraný
+		// the part where the game login screen is suppressed
 		System.out.println("*******************************");
 		System.out.println("         H-A-N-G-M-A-N");
 		System.out.println("");
@@ -12,14 +12,14 @@ public class hangmanSolver {
 		System.out.println("- Press 3 to exit");
 		System.out.println("*******************************");
 
-		// hangi iþlemin seçileceðini belirleme
+		// determine which of the options the player will choose
 		System.out.println("\nEnter your choice: ");
 		Scanner keyboard = new Scanner(System.in);
 		int choiceNumber = keyboard.nextInt();
 
-		// oyuna giriþ çýkýþ dil ve score görmek için if else kullanýmý
+		// The part created for viewing and selecting the sub-menus of the game
 		if (choiceNumber == 1) {
-			// oyuna giriþ
+			// login to the game
 			System.out.println("Enter the word to guess: ");
 			String guessingWord = keyboard.next();
 			String[] guessArray = new String[] { guessingWord };
@@ -29,7 +29,7 @@ public class hangmanSolver {
 			char[] starArr = guessingWord.toCharArray();
 
 			System.out.print("Mystery word: ");
-			// '*' þeklinde yazdýrma
+			// printing the entered mystery word as '*'
 			for (int i = 0; i < starArr.length; i++) {
 				starArr[i] = '*';
 				System.out.print(starArr[i]);
@@ -105,27 +105,27 @@ public class hangmanSolver {
 				}
 
 			}
-
+	// play turkish
 		} else if (choiceNumber == 2) {
 			System.out.println("*******************************");
 			System.out.println("         H-A-N-G-M-A-N");
 			System.out.println("");
 			System.out.println("- Select Language");
-			System.out.println("- Türkçe oynamak için 1'ye basýn");
+			System.out.println("- TÃ¼rkÃ§e oynamak iÃ§in 1'ye basÃ½n");
 			System.out.println("- Restart the game to play in English");
 			System.out.println("*******************************");
 			int languageNumber = keyboard.nextInt();
-			// oyuna giriþ
+			// oyuna giriÃ¾
 			System.out.println("Tahmin edilecek kelimeyi girin: ");
 			String guessingWord = keyboard.next();
 			String[] guessArray = new String[] { guessingWord };
-			int countTürkçe = guessingWord.length();
+			int countTÃ¼rkÃ§e = guessingWord.length();
 
 			char[] CharArr = guessingWord.toCharArray();
 			char[] starArr = guessingWord.toCharArray();
 
 			System.out.print("Gizemli kelime: ");
-			// '*' þeklinde yazdýrma
+			// printing the entered mystery word as '*'
 			for (int i = 0; i < starArr.length; i++) {
 				starArr[i] = '*';
 				System.out.print(starArr[i]);
@@ -138,39 +138,39 @@ public class hangmanSolver {
 
 				for (int j = 0; j < CharArr.length; j++) {
 					if (letterWord == starArr[j]) {
-						System.out.println("(HATA) Bu harf önceden girilmiþ");
-						System.out.println("Kurallar gereði tekrar edilen harf için adam asýlmaya devam eder.");
+						System.out.println("(HATA) Bu harf Ã¶nceden girilmiÅŸ");
+						System.out.println("Kurallar gereÄŸi tekrar edilen harf iÃ§in adam asÄ±lmaya devam eder.");
 					} else {
 						if (letterWord == CharArr[j]) {
 							starArr[j] = letterWord;
 							i--;
-							System.out.printf("Doðru cevap!\n");
+							System.out.printf("DoÄŸru cevap!\n");
 						}
 					}
 
 				}
-				// ***** 5 adet yap exeptionlarý
+				// hangman animations
 				System.out.print(starArr);
 				switch (i) {
 				case 1:
 					System.out.println("");
 					System.err.printf("\n*****\n");
-					System.out.println("Kalan deneme hakký: 4");
+					System.out.println("Kalan deneme hakkÄ±: 4");
 					break;
 				case 2:
 					System.out.println("");
 					System.err.printf("\n*****\n  |\n");
-					System.out.println("Kalan deneme hakký: 3");
+					System.out.println("Kalan deneme hakkÄ±: 3");
 					break;
 				case 3:
 					System.out.println("");
 					System.err.printf("\n*****\n  |\n ***\n*   *\n ***\n");
-					System.out.println("Kalan deneme hakký: 2");
+					System.out.println("Kalan deneme hakkÄ±: 2");
 					break;
 				case 4:
 					System.out.println("");
 					System.err.printf("\n*****\n  |\n ***\n*   *\n ***\n  |\n *|*\n* | *\n");
-					System.out.println("Kalan deneme hakký: 1");
+					System.out.println("Kalan deneme hakkÄ±: 1");
 					break;
 				case 5:
 					System.out.println("");
@@ -180,22 +180,23 @@ public class hangmanSolver {
 				}
 				System.out.printf("\n");
 				if ((new String(guessingWord)).equals(new String(starArr))) {
-					System.err.printf("Oyunu kazandýnýz\n");
-					System.out.println("Skorunuzu görmek ister misiniz ?\nGörüntülemek isterseniz 1'e basýn");
+					System.err.printf("Oyunu kazandÄ±nÄ±z\n");
+					System.out.println("Skorunuzu gÃ¶rmek ister misiniz ?\nGÃ¶rÃ¼ntÃ¼lemek isterseniz 1'e basÄ±n");
 					int c = keyboard.nextInt();
+					// show score
 					if (1 == c) {
-						countTürkçe = (100 * countTürkçe) - (i * 50);
+						countTÃ¼rkÃ§e = (100 * countTÃ¼rkÃ§e) - (i * 50);
 						System.out
-								.println("Her doðru cevap için +100 puan, her yanlýþ cevap için -50 puan hesaplanýr.");
+								.println("Her doÃ°ru cevap iÃ§in +100 puan, her yanlÄ±ÅŸ cevap iÃ§in -50 puan hesaplanÄ±r.");
 						System.out.println("");
 						System.out.println("*******************************");
 						System.out.println("         H-A-N-G-M-A-N");
 						System.out.println("");
 						System.out.println("           Skorunuz");
-						System.out.println("              " + countTürkçe);
+						System.out.println("              " + countTÃ¼rkÃ§e);
 						System.out.println("*******************************");
 					} else {
-						System.out.println("Yanlýþ komut girdiniz, lütfen tekrar deneyiniz...");
+						System.out.println("YanlÄ±ÅŸ komut girdiniz, lÃ¼tfen tekrar deneyiniz...");
 					}
 
 					break;
@@ -204,11 +205,11 @@ public class hangmanSolver {
 			}
 
 		} else if (choiceNumber == 3) {
-			// oyundan çýkma
+			// Exit the game
 			System.out.println("Exiting the game");
 			System.exit(0);
 		} else {
-			// yanlýþ seçenek giriliþi
+			// print error screen if an incorrect option is entered
 			System.out.println("Wrong operation number, please try again...");
 		}
 
